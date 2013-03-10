@@ -47,7 +47,7 @@ skin.controls.progressbar_text_color                = {0, 0, 0, 255}
 skin.controls.progressbar_text_font                 = smallfont
 
 -- list
-skin.controls.list_body_color                       = {232, 232, 232, 255}
+skin.controls.list_body_color                       = {60, 50, 50, 255}
 
 -- scrollarea
 skin.controls.scrollarea_body_color                 = {200, 200, 200, 255}
@@ -277,7 +277,7 @@ function skin.DrawButton(object)
 		local imageheight = image:getHeight()
 		local scaley = height/imageheight
 		-- button body
-		love.graphics.setColor(255, 255, 255, 255)
+		love.graphics.setColor(130, 120, 120, 255)
 		love.graphics.draw(image, x, y, 0, width, scaley)
 		-- button text
 		love.graphics.setFont(font)
@@ -345,7 +345,11 @@ function skin.DrawImage(object)
 	local sheary = object:GetShearY()
 	local image = object.image
 	local color = object.imagecolor
-	
+    local w = object:GetWidth()
+    local h = object:GetHeight()
+
+    love.graphics.setScissor(x, y, w, h)
+
 	if color then
 		love.graphics.setColor(color)
 		love.graphics.draw(image, x, y, orientation, scalex, scaley, offsetx, offsety, shearx, sheary)
@@ -353,7 +357,8 @@ function skin.DrawImage(object)
 		love.graphics.setColor(255, 255, 255, 255)
 		love.graphics.draw(image, x, y, orientation, scalex, scaley, offsetx, offsety, shearx, sheary)
 	end
-	
+
+    love.graphics.setScissor()
 end
 
 --[[---------------------------------------------------------
