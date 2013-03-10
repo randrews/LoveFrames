@@ -300,13 +300,13 @@ end
 	- func: SetChecked(bool)
 	- desc: sets whether the object is checked or not
 --]]---------------------------------------------------------
-function newobject:SetChecked(bool)
+function newobject:SetChecked(bool, suppress_events)
 
 	local onchanged = self.OnChanged
 	
 	self.checked = bool
 	
-	if onchanged then
+	if onchanged and not suppress_events then
 		onchanged(self)
 	end
 	

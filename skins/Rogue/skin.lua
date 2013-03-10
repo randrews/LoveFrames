@@ -96,7 +96,7 @@ skin.controls.slider_bar_outline_color              = {220, 220, 220, 255}
 
 -- checkbox
 skin.controls.checkbox_body_color                   = {255, 255, 255, 255}
-skin.controls.checkbox_check_color                  = {128, 204, 255, 255}
+skin.controls.checkbox_check_color                  = {0, 0, 0, 255}
 skin.controls.checkbox_text_color                   = {0, 0, 0, 255}
 skin.controls.checkbox_text_font                    = smallfont
 
@@ -592,7 +592,7 @@ end
 
 --[[---------------------------------------------------------
 	- func: DrawList(object)
-	- desc: used to draw over the object and it's children
+	- desc: used to draw over the object and its children
 --]]---------------------------------------------------------
 function skin.DrawOverList(object)
 
@@ -1214,7 +1214,8 @@ function skin.DrawCheckBox(object)
 	
 	if checked then
 		love.graphics.setColor(checkcolor)
-		love.graphics.rectangle("fill", x + 4, y + 4, width - 8, height - 8)
+        love.graphics.line(x+4, y+4, x+width-4, y+height-4)
+        love.graphics.line(x+width-4, y+4, x+4, y+height-4)
 	end
 	
 	if hover then
