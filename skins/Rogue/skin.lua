@@ -19,7 +19,7 @@ local bordercolor = {100, 100, 100, 255}
 skin.controls = {}
 
 -- frame
-skin.controls.frame_body_color                      = {232, 232, 232, 255}
+skin.controls.frame_body_color                      = {90, 80, 80, 255}
 skin.controls.frame_name_color                      = {255, 255, 255, 255}
 skin.controls.frame_name_font                       = smallfont
 
@@ -121,7 +121,7 @@ skin.controls.columnlistrow_body2_color             = {200, 200, 200, 255}
 skin.controls.columnlistrow_text_color              = {100, 100, 100, 255}
 
 -- modalbackground
-skin.controls.modalbackground_body_color            = {255, 255, 255, 100}
+skin.controls.modalbackground_body_color            = {64, 64, 64, 100}
 
 -- linenumberspanel
 skin.controls.linenumberspanel_text_color           = {100, 100, 100, 255}
@@ -188,7 +188,7 @@ function skin.DrawFrame(object)
 	love.graphics.rectangle("fill", x, y, width, height)
 	
 	-- frame top bar
-	love.graphics.setColor(255, 255, 255, 255)
+	love.graphics.setColor(255, 180, 120, 255)
 	love.graphics.draw(image, x, y, 0, width, scaley)
 	love.graphics.setColor(bordercolor)
 	skin.OutlinedRectangle(x, y + 25, width, 1)
@@ -196,7 +196,7 @@ function skin.DrawFrame(object)
 	-- frame name section
 	love.graphics.setFont(font)
 	love.graphics.setColor(namecolor)
-	love.graphics.print(name, x + 5, y + 5)
+	love.graphics.print(name, x + 5, y + 6)
 	
 	-- frame border
 	love.graphics.setColor(bordercolor)
