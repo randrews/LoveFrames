@@ -343,7 +343,7 @@ function skin.DrawImage(object)
 	local offsety = object:GetOffsetY()
 	local shearx = object:GetShearX()
 	local sheary = object:GetShearY()
-	local image = object.image
+	local image = object.image or object.image_function
 	local color = object.imagecolor
     local w = object:GetWidth()
     local h = object:GetHeight()
@@ -352,11 +352,18 @@ function skin.DrawImage(object)
 
 	if color then
 		love.graphics.setColor(color)
-		love.graphics.draw(image, x, y, orientation, scalex, scaley, offsetx, offsety, shearx, sheary)
 	else
 		love.graphics.setColor(255, 255, 255, 255)
-		love.graphics.draw(image, x, y, orientation, scalex, scaley, offsetx, offsety, shearx, sheary)
 	end
+
+    if type(image) == 'function' then
+        love.graphics.push()
+        love.graphics.translate(x, y)
+        image()
+        love.graphics.pop()
+    else
+        love.graphics.draw(image, x, y, orientation, scalex, scaley, offsetx, offsety, shearx, sheary)
+    end
 
     love.graphics.setScissor()
 end

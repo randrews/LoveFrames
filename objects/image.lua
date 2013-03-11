@@ -113,13 +113,16 @@ function newobject:SetImage(image)
 
 	if type(image) == "string" then
 		self.image = love.graphics.newImage(image)
-	else
+	elseif type(image) == 'function' then
+        self.image_function = image
+    else
 		self.image = image
 	end
 	
-	self.width = self.image:getWidth()
-	self.height = self.image:getHeight()
-	
+    if type(image) ~= 'function' then
+        self.width = self.image:getWidth()
+        self.height = self.image:getHeight()
+	end
 end
 
 --[[---------------------------------------------------------
