@@ -34,12 +34,14 @@ function newobject:initialize()
 	local close = loveframes.objects["closebutton"]:new()
 	close.parent = self
 	close.OnClick = function()
-		local onclose = self.OnClose
-		self:Remove()
-		if onclose then
-			onclose(self)
-		end
-	end
+                        local onclose = self.OnClose
+
+                        if onclose then
+                            if not onclose(self) then self:Remove() end
+                        else
+                            self:Remove()
+                        end
+                    end
 	
 	table.insert(self.internals, close)
 	
