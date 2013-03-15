@@ -97,7 +97,7 @@ function newobject:update(dt)
 			if followcursor then
 				local x, y = love.mouse.getPosition()
 				self.x = x + self.xoffset
-				self.y = y - self.height + self.yoffset
+				self.y = y + self.yoffset
 			elseif followobject then
 				self.x = object.x + self.xoffset
 				self.y = object.y + self.yoffset
