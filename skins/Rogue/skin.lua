@@ -82,7 +82,7 @@ skin.controls.multichoicerow_text_hover_color       = {255, 255, 255, 255}
 skin.controls.multichoicerow_text_font              = smallfont
 
 -- tooltip
-skin.controls.tooltip_body_color                    = {255, 255, 255, 255}
+skin.controls.tooltip_body_color                    = {160, 150, 150, 255}
 
 -- textinput
 skin.controls.textinput_body_color                  = {240, 240, 240, 255}
@@ -277,7 +277,7 @@ function skin.DrawButton(object)
 		local imageheight = image:getHeight()
 		local scaley = height/imageheight
 		-- button body
-		love.graphics.setColor(130, 120, 120, 255)
+		love.graphics.setColor(160, 150, 150, 255)
 		love.graphics.draw(image, x, y, 0, width, scaley)
 		-- button text
 		love.graphics.setFont(font)
