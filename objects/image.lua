@@ -60,6 +60,8 @@ function newobject:update(dt)
 		self.y = self.parent.y + self.staticy
 	end
 	
+    self:CheckHover()
+
 	if update then
 		update(self, dt)
 	end
