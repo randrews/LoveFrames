@@ -131,6 +131,30 @@ skin.controls.linenumberspanel_text_color           = {100, 100, 100, 255}
 skin.controls.linenumberspanel_body_color			= {200, 200, 200, 255}
 
 --[[---------------------------------------------------------
+	- func: OnRegister()
+	- desc: called when the skin is first registered, to load images
+--]]---------------------------------------------------------
+function skin:OnRegister()
+	local dir = loveframes.config["DIRECTORY"] .. "/skins/" .. self.name
+	local dircheck = love.filesystem.isDirectory(dir)
+	local images = loveframes.util.GetDirectoryContents(dir .. "/images")
+	local indeximages = loveframes.config["INDEXSKINIMAGES"]
+
+	if not dircheck then
+		loveframes.util.Error("Could not register skin: Could not find a directory for skin '" .. self.name .. "'.")
+	end
+
+	self.dir = dir
+	self.images = {}
+
+	if #images > 0 and indeximages then
+		for k, v in ipairs(images) do
+			self.images[v.name .. "." .. v.extension] = love.graphics.newImage(v.fullpath)
+		end
+	end
+end
+
+--[[---------------------------------------------------------
 	- func: OutlinedRectangle(object)
 	- desc: creates and outlined rectangle
 --]]---------------------------------------------------------
