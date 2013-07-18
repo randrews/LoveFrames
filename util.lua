@@ -293,4 +293,25 @@ function loveframes.util.GetHover()
 	return loveframes.hover
 	
 end
+
+--[[---------------------------------------------------------
+	- func: loveframes.util.Copy(tbl)
+	- desc: returns a deep copy of the table passed into it
+--]]---------------------------------------------------------
+function loveframes.util.Copy(tbl)
+
+	local new_table = {}
+
+	for k, v in pairs(tbl) do
+		if type(v) == 'table' then
+			new_table[k] = loveframes.util.Copy(v)
+		else
+			new_table[k] = v
+		end
+	end
+
+	setmetatable(new_table, getmetatable(tbl))
+	return new_table
+
+end
 	
