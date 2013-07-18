@@ -952,12 +952,16 @@ function newobject:SetSkin(name)
 end
 
 --[[---------------------------------------------------------
-	- func: GetSkin(name)
-	- desc: gets the object's skin
+	- func: GetSkin()
+	- desc: gets the object's skin. This is either one set with SetSkin, the active skin, or the default skin.
 --]]---------------------------------------------------------
-function newobject:GetSkin(name)
+function newobject:GetSkin()
 
-	return self.skin
+	local skins = loveframes.skins.available
+	local activeskin = loveframes.config["ACTIVESKIN"]
+	local defaultskin = loveframes.config["DEFAULTSKIN"]
+	local selfskin = self.skin
+	return skins[selfskin] or skins[activeskin] or skins[defaultskin]
 	
 end
 
