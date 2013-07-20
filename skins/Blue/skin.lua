@@ -11,9 +11,6 @@ skin.name = "Blue"
 skin.author = "Nikolai Resokav"
 skin.version = "1.0"
 
--- Uncomment this if you want to override where the skin stores images
--- skin.directory = loveframes.config["DIRECTORY"] .. "/skins/Blue"
-
 local smallfont = love.graphics.newFont(10)
 local imagebuttonfont = love.graphics.newFont(15)
 local bordercolor = {143, 143, 143, 255}
@@ -138,24 +135,6 @@ skin.controls.linenumberspanel_body_color			= {200, 200, 200, 255}
 	- desc: called when the skin is first registered, to load images
 --]]---------------------------------------------------------
 function skin:OnRegister()
-    local default_dir = loveframes.config["DIRECTORY"] .. "/skins/" .. self.name
-    local dir = self.directory or default_dir
-	local dircheck = love.filesystem.isDirectory(dir)
-	local images = loveframes.util.GetDirectoryContents(dir .. "/images")
-	local indeximages = loveframes.config["INDEXSKINIMAGES"]
-
-	if not dircheck then
-		loveframes.util.Error("Could not register skin: Could not find a directory for skin '" .. self.name .. "'.")
-	end
-
-	self.dir = dir
-	self.images = {}
-
-	if #images > 0 and indeximages then
-		for k, v in ipairs(images) do
-			self.images[v.name .. "." .. v.extension] = love.graphics.newImage(v.fullpath)
-		end
-	end
 end
 
 --[[---------------------------------------------------------

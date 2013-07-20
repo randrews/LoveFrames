@@ -19,6 +19,9 @@ function loveframes.skins.Register(skin)
 	local author = skin.author
 	local version = skin.version
 	local namecheck = loveframes.skins.available[name]
+	local dir = loveframes.config["DIRECTORY"] .. "/skins/" .. skin.name
+	local dircheck = love.filesystem.isDirectory(dir)
+	local indeximages = loveframes.config["INDEXSKINIMAGES"]
 	
 	if name == "" or not name then
 		loveframes.util.Error("Could not register skin: Invalid or missing name data.")
@@ -35,9 +38,19 @@ function loveframes.skins.Register(skin)
 	if namecheck then
 		loveframes.util.Error("Could not register skin: A skin with the name '" ..name.. "' already exists.")
 	end
-	
+
+	if dircheck and indeximages then
+		local images = loveframes.util.GetDirectoryContents(dir .. "/images")
+
+		skin.dir = dir
+		skin.images = {}
+
+		for k, v in ipairs(images) do
+			skin.images[v.name .. "." .. v.extension] = love.graphics.newImage(v.fullpath)
+		end
+	end
+
 	loveframes.skins.available[name] = skin
-	
 	if skin.OnRegister then skin:OnRegister() end
 end
 
